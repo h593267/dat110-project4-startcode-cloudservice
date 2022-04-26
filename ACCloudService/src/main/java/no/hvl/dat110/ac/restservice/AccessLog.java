@@ -1,5 +1,7 @@
 package no.hvl.dat110.ac.restservice;
 
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -20,27 +22,35 @@ public class AccessLog {
 	public int add(String message) {
 		
 		int id = 0;
+		AccessEntry entry = new AccessEntry(cid.get(), message); 
+		id = cid.get();
+		log.put(id, entry);
 		
 		return id;
 	}
 		
 	// TODO: retrieve a specific access entry from the log
 	public AccessEntry get(int id) {
-		
-		return null;
+		AccessEntry entry = log.get(id);
+		return entry;
 		
 	}
 	
 	// TODO: clear the access entry log
 	public void clear() {
-		
+		log.clear();
 	}
 	
 	// TODO: return JSON representation of the access log
 	public String toJson () {
     	
 		String json = null;
-    	
+		Iterator<Integer> it = log.keySet().iterator();
+    	while(it.hasNext()) {
+    		int id = it.next();
+    		AccessEntry entry = get(id);
+    		json ="message : " +  entry.getMessage() + " id : " + entry.getId();
+    	}
     	return json;
     }
 }
