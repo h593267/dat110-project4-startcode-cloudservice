@@ -77,8 +77,8 @@ public class App {
 			
 		 	Gson gson = new Gson();
 		 	String codeString = req.params(":code");
-		 	int x = Integer.parseInt(codeString, 0);
-		 	int y = Integer.parseInt(codeString, 1);
+		 	int x = Integer.parseInt(codeString.charAt(0) + "");
+		 	int y = Integer.parseInt(codeString.charAt(1) + "");
 		 	int[] code = {x,y};
 		 	accesscode.setAccesscode(code);
 		 	res.body(gson.toJson(codeString));
