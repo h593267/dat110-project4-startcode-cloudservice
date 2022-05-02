@@ -50,7 +50,7 @@ public class App {
 			
 
 		 	Gson gson = new Gson();
-		 	accesslog.add(req.body());
+		 	accesslog.add(gson.fromJson(req.body(), AccessMessage.class).getMessage());
 		 	
 		 	
 		 	return gson.toJson(req.body());
