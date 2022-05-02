@@ -21,7 +21,7 @@ public class AccessLog {
 	// TODO: add an access entry to the log for the provided message and return assigned id
 	public int add(String message) {
 		
-		int id = 0;
+		int id = -1;
 		AccessEntry entry = new AccessEntry(cid.get(), message); 
 		id = cid.get();
 		log.put(id, entry);
