@@ -21,9 +21,8 @@ public class AccessLog {
 	// TODO: add an access entry to the log for the provided message and return assigned id
 	public int add(String message) {
 		
-		int id = -1;
-		AccessEntry entry = new AccessEntry(cid.get(), message); 
-		id = cid.get();
+		int id = cid.getAndIncrement();
+		AccessEntry entry = new AccessEntry(id, message); 
 		log.put(id, entry);
 		
 		return id;
@@ -45,12 +44,8 @@ public class AccessLog {
 	public String toJson () {
     	
 		String json = null;
-		Iterator<Integer> it = log.keySet().iterator();
-    	while(it.hasNext()) {
-    		int id = it.next();
-    		AccessEntry entry = get(id);
-    		json ="message : " +  entry.getMessage() + " id : " + entry.getId();
-    	}
-    	return json;
+		Gson gson = new Gson();
+		return gson.toJson(this);
+		
     }
 }
