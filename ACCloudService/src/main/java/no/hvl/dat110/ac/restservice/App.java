@@ -92,7 +92,7 @@ public class App {
 			
 		 	Gson gson = new Gson();
 
-		 	return gson.toJson(accesscode.getAccesscode());
+		 	return gson.toJson(accesscode);
 		});
 		
 		
